@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('emotions', function (Blueprint $table) {
+        Schema::create('emotion_log', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('emotion_data',200);
-            $table->string('emotion_percentage',200);
+            $table->foreignId('log_id')->constrained('logs');   //参照先のテーブル名を
+            $table->foreignId('emotion_id')->constrained('emotions');    //constrainedに記載
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emotions_');
+        Schema::dropIfExists('emotion_log');
     }
 };
