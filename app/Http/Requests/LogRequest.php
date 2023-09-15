@@ -24,7 +24,16 @@ class LogRequest extends FormRequest
     public function rules()
     {
         return [
-            'log.date' => 'required|date|date',
+            'log.date' => 'nullable|date',
+            'log.weather' => 'required|string|max:10',
+            'log.situation' => 'required|string|max:1000',
+            'log.image_url' => 'nullable|file',
+            'log.emotion' => 'required|string|max:300',
+            'log.evidence_of_emotion' => 'required|string|max:1000',
+            'log.counter_evidence_of_emotion' => 'required|string|max:1000',
+            'log.flexible_thought' => 'required|string|max:1000',
+
+    
         ];
     }
 }

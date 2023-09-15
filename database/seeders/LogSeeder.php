@@ -22,6 +22,7 @@ class LogSeeder extends Seeder
                 'weather' => '晴れ',
                 'situation' => '友だちと喧嘩',
                 'image_url' => '写真',
+                'emotion'=>'感情',
                 'evidence_of_emotion' => 'ひどいことを言った',
                 'counter_evidence_of_emotion' => '私のせいではない',
                 'flexible_thought' => '仲直りすれば良い',

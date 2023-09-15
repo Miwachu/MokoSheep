@@ -15,8 +15,18 @@ return new class extends Migration
     {
         Schema::create('emotions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('weather',250);
+            $table->boolean('A');
+            $table->integer('percentage_of_A');
+            $table->boolean('B');
+            $table->integer('percentage_of_B');
+            $table->boolean('C');
+            $table->integer('percentage_of_C');
+            $table->boolean('D');
+            $table->integer('percentage_of_D');
+            $table->boolean('E');
+            $table->integer('percentage_of_E');
+            $table->boolean('F');
+            $table->integer('percentage_of_F');
         });
     }
 

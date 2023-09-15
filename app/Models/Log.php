@@ -17,6 +17,7 @@ class Log extends Model
     'weather',
     'situation',
     'image_url',
+    'emotion',
     'evidence_of_emotion',
     'counter_evidence_of_emotion',
     'flexible_thought',

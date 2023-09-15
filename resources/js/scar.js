@@ -1,12 +1,3 @@
-//---------------------------------------------
-// 定数定義
-//---------------------------------------------
-// 保存を行うプログラムがあるURL
-const SAVE_URL = 'https://d4871bb1317d47ea82c1816fa5381b3a.vfs.cloud9.ap-southeast-2.amazonaws.com/logs';
-
-// 画像が保存されているURL
-const IMAGE_URL = 'https://d4871bb1317d47ea82c1816fa5381b3a.vfs.cloud9.ap-southeast-2.amazonaws.com/logs/scar';
-
 // ※コールバック: 第2引数の無名関数(=関数名が省略された関数)
 window.addEventListener('load', () => {
   const canvas = document.querySelector('#draw-area');
@@ -62,7 +53,8 @@ window.addEventListener('load', () => {
     lastPosition.x = x;
     lastPosition.y = y;
   }
- // canvas上に書いた絵を全部消す
+ 
+  // canvas上に書いた絵を全部消す
   function clear() {
     context.clearRect(0, 0, canvas.width, canvas.height);
   }
@@ -100,7 +92,7 @@ window.addEventListener('load', () => {
       // eventの中の値を見たい場合は以下のようにconsole.log(event)で、
       // デベロッパーツールのコンソールに出力させると良い
       // console.log(event);
-      
+ 
       draw(event.layerX, event.layerY);
     });
   }
@@ -108,43 +100,3 @@ window.addEventListener('load', () => {
   // イベント処理を初期化する
   initEventHandler();
 });
-    /**
- * サーバへJSON送信
- *
- * @param url   {string} 送信先URL
- * @param param {object} fetchオプション
- */ import fetch from "node-fetch"
-    function sendServer(url, param){
-        fetch(url, param)
-        .then((response)=>{
-          return response.json();
-        })
-        .then((json)=>{
-          if(json.status){
-            alert("送信に『成功』しました");
-            setImage(json.result);    //json.resultにはファイル名が入っている
-          }
-          else{
-            alert("送信に『失敗』しました");
-            console.log(`[error1] ${json.result}`);
-          }
-        })
-        .catch((error)=>{
-          alert("送信に『失敗』しました");
-          console.log(`[error2] ${error}`);
-        });
-    }   
-    
-    /**
-         * サーバ上の画像を表示する
-         *
-         * @param path {string} 画像のURL
-         * @return void
-         */
-        function setImage(path){
-          const url = `${IMAGE_URL}/${path}`;
-          const result = document.querySelector("#result");
-          const li = document.createElement("li");
-          li.innerHTML = `<a href="${url}" target="_blank" rel="noopener noreferrer"><img src="${url}" class="saveimage"></a>`;
-          result.insertBefore(li, result.firstChild);
-        }

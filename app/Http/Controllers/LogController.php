@@ -27,18 +27,22 @@ class LogController extends Controller
      //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
     }
 
-    public function create(Emotion $emotion)
+    public function create(Log $log,Emotion $emotion)
     {
-        return view('Emotions.create')->with(['emotions' => $emotion->get()]);
+        return view('logs.create')->with(['logs' => $log->get()],['emotions' => $emotion->get()]);
     }
 
-    public function store(Request $request, Log $log)
+    public function store(Log $log,Emotion $emotion,Request $request)
     {
         $input = $request['log'];
+        $input = $request['emotion'];
          //cloudinaryへ画像を送信し、画像のURLを$image_urlに代入している
+          if($request->file('image')){
         $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
         dd($image_url);  //画像のURLを画面に表示
-        $input += ['image_url' => $image_url];  //追加
+        $input += ['image_url' => $image_url];
+        }//追加
+        $log->timestamps=false;
         $log->fill($input)->save();
         return redirect('/logs/' . $log->id);
     }
