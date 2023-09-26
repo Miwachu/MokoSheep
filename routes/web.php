@@ -30,5 +30,7 @@ Route::post('/logs', [LogController::class, 'store']);
 Route::get('/logs/{log}/edit', [LogController::class, 'edit']);
 Route::put('/logs/{log}', [LogController::class, 'update']);
 Route::delete('/logs/{log}', [LogController::class,'delete']);
+
+
 });
 require __DIR__.'/auth.php';

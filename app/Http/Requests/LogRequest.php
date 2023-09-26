@@ -24,10 +24,15 @@ class LogRequest extends FormRequest
     public function rules()
     {
         return [
-            'log.date' => 'nullable|date',
+            'log.date' => 'nullable|date|after:2000-01-01',
             'log.weather' => 'required|string|max:10',
             'log.situation' => 'required|string|max:1000',
-            'log.image_url' => 'nullable|file',
+            'log.A' => 'nullable|integer',
+            'log.B' => 'nullable|integer',
+            'log.C' => 'nullable|integer',
+            'log.D' => 'nullable|integer',
+            'log.E' => 'nullable|integer',
+            'log.F' => 'nullable|integer',
             'log.emotion' => 'required|string|max:300',
             'log.evidence_of_emotion' => 'required|string|max:1000',
             'log.counter_evidence_of_emotion' => 'required|string|max:1000',

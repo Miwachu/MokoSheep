@@ -16,11 +16,19 @@ class LogSeeder extends Seeder
      */
     public function run()
     {
+      
+                
         DB::table('logs')->insert([
-                'id' => '1',
-                'date' => '2003-02-24',
-                'weather' => '晴れ',
-                'situation' => '友だちと喧嘩',
+                'id' => '2',
+                'date' => '2023-09-03',
+                'weather' => 'くもり',
+                'situation' => '仕事でミス',
+                'A' => '20',
+                'B' => '20',
+                'C' => '20' ,
+                'D' => '20',
+                'E' => '20' ,
+                'F' => '20',
                 'image_url' => '写真',
                 'emotion'=>'感情',
                 'evidence_of_emotion' => 'ひどいことを言った',

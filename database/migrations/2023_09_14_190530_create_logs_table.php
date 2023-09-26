@@ -15,9 +15,15 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->date('date',2022-01-01);
+            $table->date('date',2022-01-01)->nullable();
             $table->string('weather',10);
             $table->string('situation',1000);
+            $table->integer('A');
+            $table->integer('B');
+            $table->integer('C');
+            $table->integer('D');
+            $table->integer('E');
+            $table->integer('F');
             $table->string('image_url');
             $table->string('emotion',300);
             $table->string('evidence_of_emotion',1000);
