@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Log extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     
     
     protected $fillable = [
@@ -16,16 +17,25 @@ class Log extends Model
     'date',
     'weather',
     'situation',
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
     'image_url',
     'emotion',
     'evidence_of_emotion',
     'counter_evidence_of_emotion',
     'flexible_thought',
     ];
-    //記録に対するリレーション
-    public function Emotions(){
-        //生徒は多数の科目を履修。
-        return $this->belongsToMany(Emotion::class);
+    
+    public function getPaginateByLimit(int $limit_count = 5)
+    {
+    // updated_atで降順に並べたあと、limitで件数制限をかける
+    return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
+    
+  
 }

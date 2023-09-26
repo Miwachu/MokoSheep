@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('emotion_log', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('log_id')->constrained('logs');   //参照先のテーブル名を
-            $table->foreignId('emotion_id')->constrained('emotions');    //constrainedに記載
+        Schema::table('logs', function (Blueprint $table) {
+            //
+            $table->softDeletes();
+
         });
     }
 
@@ -27,6 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emotion_log');
+        Schema::table('logs', function (Blueprint $table) {
+            //
+        });
     }
 };

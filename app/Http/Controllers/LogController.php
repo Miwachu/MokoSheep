@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Request\LogRequest;
 use App\Models\Log;
-use App\Models\Emotion;
 use App\Models\User;
 use Cloudinary; 
 
@@ -15,10 +14,10 @@ class LogController extends Controller
     {
         return view('logs.home');
     }
-    
+  
     public function index(Log $log)
     {
-        return view('logs.index')>with(['logs' =>$log]);
+        return view('logs.index')->with(['logs' =>$log->getPaginateByLimit()]);
     }
     
     public function show(Log $log)
@@ -26,16 +25,16 @@ class LogController extends Controller
         return view('logs.show')->with(['log' => $log]);
      //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
     }
-
-    public function create(Log $log,Emotion $emotion)
+    
+    public function create(Log $log)
     {
-        return view('logs.create')->with(['logs' => $log->get()],['emotions' => $emotion->get()]);
+        return view('logs.create')->with(['logs' => $log->get()]);
     }
-
-    public function store(Log $log,Emotion $emotion,Request $request)
-    {
+    
+    public function store(Log $log,Request $request)
+    {   
+        // dd($request);
         $input = $request['log'];
-        $input = $request['emotion'];
          //cloudinaryへ画像を送信し、画像のURLを$image_urlに代入している
           if($request->file('image')){
         $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
@@ -44,26 +43,25 @@ class LogController extends Controller
         }//追加
         $log->timestamps=false;
         $log->fill($input)->save();
-        return redirect('/logs/' . $log->id);
+        
+        return view('logs.home');
     }
-    
     public function edit(Log $log)
     {
         return view('logs.edit')->with(['log' => $log]);
     }
-    
     public function update(LogRequest $request, Log $log)
     {
         $input_log = $request['log'];
-        $log->fill($input_log)->save();
+        $log->fill($input)->save();
     
         return redirect('/logs/' . $log->id);
     }
-    
     public function delete(Log $log)
     {
         $log->delete();
-        return redirect('/');
+
+        return redirect('logs.home');
     }
     
 }
