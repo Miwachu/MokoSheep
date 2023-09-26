@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="bg-blue-100">
+    <div class="w-full h-screen bg-blue-100">
     <div class="w-2/3 text-xl mx-auto font-normal flex justify-self-auto text-black font-sans">
 
             <div class='logs'>
@@ -36,25 +36,10 @@
        
             </div>
             
-            <form action="logs.home" id="form_{{ $log->id }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" onclick="deleteLog{{ $log->id }})" class="bg-indigo-100 hover:bg-pink-200 hover:translate-y-0.5 transform transition">削除</button> 
-                    </form>
-                    
-            
-        <script>
-            function deleteLog(id) {
-            'use strict'
-    
-            if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
-                document.getElementById(`form_${id}`).submit();
-                }
-            }
-        </script>
+           
         
         <div class="footer">
-            <a href="/" type="button" class="bg-blue-200 mt-10 px-2 py-1 my-4">戻る</a>
-            <div class="edit"><a href="/logs/{{ $log->id }}/edit" class="bg-blue-200 mt-10 px-2 py-1 my-4">edit</a></div>
+            <a href="/home" type="button" class="bg-blue-200 mt-10 px-2 py-1 my-4">戻る</a>
+            <div class="edit"><a href="/logs/{{ $log->id }}/edit" class="bg-blue-200 mt-10 px-2 py-1 my-4">編集</a></div>
         </div>
 </x-app-layout>

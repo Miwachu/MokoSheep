@@ -46,22 +46,27 @@ class LogController extends Controller
         
         return view('logs.home');
     }
+    
     public function edit(Log $log)
     {
         return view('logs.edit')->with(['log' => $log]);
     }
-    public function update(LogRequest $request, Log $log)
+    
+    public function update(Request $request, Log $log)
     {
-        $input_log = $request['log'];
+        $input = $request['log'];
         $log->fill($input)->save();
     
-        return redirect('/logs/' . $log->id);
+        return redirect('/logs');
     }
+    
     public function delete(Log $log)
     {
         $log->delete();
+        $log->save();
 
-        return redirect('logs.home');
+
+        return redirect('/');
     }
     
 }
