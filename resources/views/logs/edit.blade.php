@@ -17,7 +17,7 @@
             <div class="mt-10">
                 <h2>出来事・状況</h2>
                 <h2 class="text-lg">今あなたは、どんなことで悩んでいますか？どんなことが原因で切ってしまいましたか？具体的に書いてみましょう。</h2>
-                <textarea name="log[situation]" style="width: 600px; height: 150px;" value="{{$log->situation}}"></textarea> 
+                <input name="log[situation]" style="width: 600px; height: 150px;" value="{{$log->situation}}"/> 
             </div>
             
             <div>
@@ -47,26 +47,26 @@
             <div>
                 <h2 class="mt-10">自動思考</h2>
                 <h2 class="text-lg">切っているとき、頭の中では何とつぶやいていましたか？台詞のように書いてみましょう。</h2>
-                <textarea name="log[emotion]" style="width: 600px; height: 150px;" value="{{$log->emotion}}"></textarea>
+                <input name="log[emotion]" style="width: 600px; height: 150px;" value="{{$log->emotion}}"/>
             </div>
               
     
             <div>
                 <h2 class="mt-10">自動思考の証拠</h2>
                 <h2 class="text-lg">⾃動思考を裏付ける根拠は何でしょうか？</h2>
-                <textarea name="log[evidence_of_emotion]" style="width: 600px; height: 150px;" value="{{$log->evidence_of_emotion}}"></textarea> 
+                <input name="log[evidence_of_emotion]" style="width: 600px; height: 150px;" value="{{$log->evidence_of_emotion}}"/> 
             </div>
             
             <div>
                 <h2 class="mt-10">自動思考への反証</h2>
                 <h2 class="text-lg">⾃動思考に異議を申し⽴ててみてください。</h2>
-            <textarea name="log[counter_evidence_of_emotion]" style="width: 600px; height: 150px;" value="{{$log->counter_evidence_of_emotion}}"></textarea> 
+            <input name="log[counter_evidence_of_emotion]" style="width: 600px; height: 150px;" value="{{$log->counter_evidence_of_emotion}}"/> 
             </div>
             
             <div>
                 <h2 class="mt-10">柔軟な考え方・とらえ方</h2>
                 <h2 class="text-lg">より柔軟で、合理的な考えを記⼊してください。</h2>
-                <textarea name="log[flexible_thought]" style="width: 600px; height: 150px;" value="{{$log->flexible_thought}}"></textarea> 
+                <input name="log[flexible_thought]" style="width: 600px; height: 150px;" value="{{$log->flexible_thought}}"/> 
             </div>
 
             <input type="submit" class="bg-blue-200 mt-10 px-2 py-1 my-4" value="保存">
