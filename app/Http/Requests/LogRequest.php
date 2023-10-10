@@ -33,6 +33,7 @@ class LogRequest extends FormRequest
             'log.D' => 'nullable|integer',
             'log.E' => 'nullable|integer',
             'log.F' => 'nullable|integer',
+            'log.image_url' => 'nullable|file',
             'log.emotion' => 'required|string|max:300',
             'log.evidence_of_emotion' => 'required|string|max:1000',
             'log.counter_evidence_of_emotion' => 'required|string|max:1000',

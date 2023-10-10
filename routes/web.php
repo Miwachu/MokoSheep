@@ -27,6 +27,7 @@ Route::get('/logs',[LogController::class,'index']);
 Route::get('/logs/create', [LogController::class, 'create']);
 Route::get('/logs/{log}', [LogController::class ,'show']);
 Route::post('/logs', [LogController::class, 'store']);
+Route::get('/canvas',[LogController::class,'canvas']);
 Route::get('/logs/{log}/edit', [LogController::class, 'edit']);
 Route::put('/logs/{log}', [LogController::class, 'update']);
 Route::delete('/logs/{log}', [LogController::class,'delete']);
