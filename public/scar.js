@@ -2,10 +2,10 @@
 // 定数定義
 //---------------------------------------------
 // 保存を行うプログラムがあるURL
-const SAVE_URL = 'http://example.com/receive.php';
+const SAVE_URL = 'https://d4871bb1317d47ea82c1816fa5381b3a.vfs.cloud9.ap-southeast-2.amazonaws.com/logs/create';
 
 // 画像が保存されているURL
-const IMAGE_URL = 'http://example.com/image';
+const IMAGE_URL = 'https://d4871bb1317d47ea82c1816fa5381b3a.vfs.cloud9.ap-southeast-2.amazonaws.com/canvas';
 //---------------------------------------------
 // 読み込み
 //---------------------------------------------

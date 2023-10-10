@@ -31,6 +31,11 @@ class LogController extends Controller
         return view('logs.create')->with(['logs' => $log->get()]);
     }
     
+    public function canvas()
+    {
+        return view('canvas.scar');
+    }
+
     public function store(Log $log,Request $request)
     {   
         // dd($request);

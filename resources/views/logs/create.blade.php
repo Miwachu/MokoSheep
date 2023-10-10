@@ -23,7 +23,12 @@
                 <textarea name="log[situation]" placeholder="（例）仕事でミスをして上司に叱られた。" style="width: 600px; height: 150px;" ></textarea> 
             </div>
             
-           
+            <div class="image mt-20">
+                    <h3>画像</h3>
+            <a href="/canvas">傷の位置</a>
+                    <input type="file" name="log[image_url]">
+                </div>
+
             <div>
                 <h2>気分・感情</h2>
                 <h2 class="text-lg">切ったときはどんな気分・感情でしたか？それぞれの強さとともに書いてみましょう。
