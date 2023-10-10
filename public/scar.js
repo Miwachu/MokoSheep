@@ -126,6 +126,7 @@ window.addEventListener('load', () => {
     function post(){
 　  xhr.open('POST', 'scar.php', true);
     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    xhr.setRequestBody(JSON.stringify({data: canvas}));
     const request = canvas;
 　  xhr.send(request);
     }
