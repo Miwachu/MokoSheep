@@ -6,11 +6,13 @@ const SAVE_URL = 'http://example.com/receive.php';
 
 // 画像が保存されているURL
 const IMAGE_URL = 'http://example.com/image';
-
+//---------------------------------------------
+// 読み込み
+//---------------------------------------------
 // ページの読み込みが完了したらコールバック関数が呼ばれる
 // ※コールバック: 第2引数の無名関数(=関数名が省略された関数)
 window.addEventListener('load', () => {
-  const canvas = document.querySelector('#draw');
+  const canvas = document.querySelector('#draw-area');
   // contextを使ってcanvasに絵を書いていく
   const context = canvas.getContext('2d');
 
@@ -35,7 +37,7 @@ window.addEventListener('load', () => {
     // MDN CanvasRenderingContext2D: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin
     context.lineCap = 'round'; // 丸みを帯びた線にする
     context.lineJoin = 'round'; // 丸みを帯びた線にする
-    context.lineWidth = 5; // 線の太さ
+    context.lineWidth = 3; // 線の太さ
     context.strokeStyle = 'red'; // 線の色
 
     // 書き始めは lastPosition.x, lastPosition.y の値はnullとなっているため、
@@ -105,68 +107,28 @@ window.addEventListener('load', () => {
 
       draw(event.layerX, event.layerY);
     });
-  }
-  //---------------------------------------------
-  // 保存ボタンが押されたらサーバへ送信する
-  //---------------------------------------------
-  document.querySelector("#btn-send").addEventListener("click", ()=>{
-    // Canvasのデータを取得
-    const canvas = draw.toDataURL("image/png");  // DataURI Schemaが返却される
-
-    // 送信情報の設定
-    const param  = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      body: JSON.stringify({data: canvas})
+    }
+ 
+  window.onload = function() {
+    document.getElementById('#btn-send').onclick = function() {
+     post();
     };
+  
+  let xhr = new XMLHttpRequest();
 
-    // サーバへ送信
-    sendServer(SAVE_URL, param);
-  });
-  /**
- * サーバへJSON送信
- *
- * @param url   {string} 送信先URL
- * @param param {object} fetchオプション
- */
-function sendServer(url, param){
-  fetch(url, param)
-    .then((response)=>{
-      return response.json();
-    })
-    .then((json)=>{
-      if(json.status){
-        alert("送信に『成功』しました");
-        setImage(json.result);    //json.resultにはファイル名が入っている
-      }
-      else{
-        alert("送信に『失敗』しました");
-        console.log(`[error1] ${json.result}`);
-      }
-    })
-    .catch((error)=>{
-      alert("送信に『失敗』しました");
-      console.log(`[error2] ${error}`);
-    });
-}
+  // サーバからのデータ受信を行った際の動作
+  xhr.onload = function () {
+     const canvas = "draw-area".toDataURL("image/png"); 
+     canvas.value = xhr.response;
+   };
 
-/**
- * サーバ上の画像を表示する
- *
- * @param path {string} 画像のURL
- * @return void
- */
-function setImage(path){
-  const url = `${IMAGE_URL}/${path}`;
-  const result = document.querySelector("#result");
-  const li = document.createElement("li");
-  li.innerHTML = `<a href="${url}" target="_blank" rel="noopener noreferrer"><img src="${url}" class="saveimage"></a>`;
-  result.insertBefore(li, result.firstChild);
-}
+      //ボタンを押した際の動作
+    function post(){
+　  xhr.open('POST', 'scar.php', true);
+    xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    const request = canvas;
+　  xhr.send(request);
+    }
+};
 
-
-  // イベント処理を初期化する
-  initEventHandler();
 });
