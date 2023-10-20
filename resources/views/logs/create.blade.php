@@ -24,8 +24,8 @@
             </div>
             
             <div class="image mt-20">
-                    <h3>画像</h3>
-            <a href="/canvas">傷の位置</a>
+                    <h3>傷</h3>
+            <a href="/canvas"  type="button" class="bg-indigo-50 rounded px-20 py-10 mx-10 my-4 hover:bg-pink-100 hover:translate-y-0.5 transform transition">傷を描いてみよう</a>
                     <input type="file" name="log[image_url]">
                 </div>
 

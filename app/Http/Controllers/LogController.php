@@ -71,7 +71,7 @@ class LogController extends Controller
         $log->save();
 
 
-        return redirect('/');
+        return redirect('/logs');
     }
     
 }
