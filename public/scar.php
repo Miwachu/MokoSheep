@@ -3,23 +3,23 @@ header("Content-Type: application/json");
 
 $json = getParamJSON();
 
-if (!isset($json['data'])) {
-    sendResult(false, 'Empty query parameter: data');
+if (!isset($json['canvasData'])) {
+    sendResult(false, 'Empty query parameter: canvasData');
     exit(1);
 }
 
-if (strlen($json['data']) > (1024 * 30)) {
-    sendResult(false, 'Too long string: data');
+if (strlen($json['canvasData']) > (1024 * 30)) {
+    sendResult(false, 'Too long string: canvasData');
     exit(1);
 }
 
-if (!preg_match('/^data:image\/png;base64,/', $json['data'])) {
-    sendResult(false, 'Not Allow data type: data');
+if (!preg_match('/^canvasData:image\/png;base64,/', $json['canvasData'])) {
+    sendResult(false, 'Not Allow canvasData type: data');
     exit(1);
 }
 
-$data = $json['data'];
-$data = str_replace('data:image/png;base64,', '', $data);
+$data = $json['canvasData'];
+$data = str_replace('canvasData:image/png;base64,', '', $data);
 $data = str_replace(' ', '+', $data);
 $image = base64_decode($data);
 
@@ -32,7 +32,7 @@ if ($result !== false) {
     sendResult(true, $file);  // ブラウザにファイル名を返却する
 } else {
     // 書き込みエラー
-    sendResult(false, 'Can not write image data');
+    sendResult(false, 'Can not write image canvasData');
 }
 
 function getParamJSON() {

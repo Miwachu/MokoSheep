@@ -35,6 +35,7 @@ class LogController extends Controller
     {
         return view('canvas.scar');
     }
+    
 
     public function store(Log $log,Request $request)
     {   
