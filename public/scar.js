@@ -61,6 +61,60 @@ window.addEventListener('load', () => {
     }
 
     initEventHandler();
+    
+    
+  //---------------------------------------------
+  // 保存ボタンが押されたらサーバへ送信する
+  //---------------------------------------------
+  document.querySelector("#btn-send").addEventListener("click", ()=>{
+    // Canvasのデータを取得
+    const canvas = document.querySelector('#draw-area');
+    const canvasData = canvas.toDataURL('image/png');// DataURI Schemaが返却される
+
+    // 送信情報の設定
+    const param  = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({data: canvasData})
+    };
+
+    // サーバへ送信
+    sendServer(SAVE_URL, param);
+  });
+
+
+
+    
+    
+    /**
+ * サーバへJSON送信
+ *
+ * @param url   {string} 送信先URL
+ * @param param {object} fetchオプション
+ */
+    function sendServer(url, param){
+      fetch(url, param)
+        .then((response)=>{
+          return response.json();
+        })
+        .then((json)=>{
+          if(json.status){
+            alert("送信に『成功』しました");
+            setImage(json.result);    //json.resultにはファイル名が入っている
+          }
+          else{
+            alert("送信に『失敗』しました");
+            console.log(`[error1] ${json.result}`);
+          }
+        })
+        .catch((error)=>{
+          alert("送信に『失敗』しました");
+          console.log(`[error2] ${error}`);
+        });
+    }
+
 
     // ボタンクリック時のイベント処理を追加
     const btnSave = document.getElementById('btn-send');
